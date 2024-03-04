@@ -1009,11 +1009,11 @@ object AngConfigManager {
                     var count = 0
                     for (srv in serverList) {
                         val config = ServerConfig.create(EConfigType.CUSTOM)
+                        config.subscriptionId = subid
+                        config.fullConfig = srv
                         config.remarks = srv.remarks
                             ?: ("%04d-".format(count + 1) + System.currentTimeMillis()
                                 .toString())
-                        config.subscriptionId = subid
-                        config.fullConfig = srv
                         val key = MmkvManager.encodeServerConfig("", config)
                         serverRawStorage?.encode(key, gson.toJson(srv))
                         count += 1
