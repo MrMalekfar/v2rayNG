@@ -1023,7 +1023,42 @@ object AngConfigManager {
             } catch (e: Exception) {
                 e.printStackTrace()
             }
+		if (server.contains("inbounds")
+        && server.contains("outbounds")
+        && server.contains("routing")
+		&& server.contains("observatory")
+        ) {
+			    try {
+                val gson = GsonBuilder()
+                            .setPrettyPrinting()
+                            .disableHtmlEscaping()
+                            .registerTypeAdapter( // custom serialiser is needed here since JSON by default parse number as Double, core will fail to start
+                                    object : TypeToken<Double>() {}.type,
+                                    JsonSerializer { src: Double?, _: Type?, _: JsonSerializationContext? -> JsonPrimitive(src?.toInt()) }
+                            )
+                            .create()
+                val serverList: Array<V2rayConfig> =
+                Gson().fromJson(server, Array<V2rayConfig>::class.java)
 
+                if (serverList.isNotEmpty()) {
+                    var count = 0
+                    for (srv in serverList) {
+                        val config = ServerConfig.create(EConfigType.CUSTOM)
+                        config.subscriptionId = subid
+                        config.fullConfig = srv
+						config.remarks = srv.remarks
+                            ?: ("%04d-".format(count + 1) + System.currentTimeMillis()
+                            .toString())
+                        val key = MmkvManager.encodeServerConfig("", config)
+                        serverRawStorage?.encode(key, gson.toJson(srv))
+                        count += 1
+                    }
+                    return count
+                }
+            } catch (e: Exception) {
+                e.printStackTrace()
+            }
+			}
             // For compatibility
             val config = ServerConfig.create(EConfigType.CUSTOM)
             config.subscriptionId = subid
