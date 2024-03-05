@@ -430,9 +430,8 @@ data class V2rayConfig(
 
     data class RoutingBean(var domainStrategy: String,
                            var domainMatcher: String? = null,
-                           var rules: ArrayList<RulesBean>,
-                           val balancers: List<BalancersBean>? = null) {
-
+                           var rules: ArrayList<RulesBean>
+                           val balancers: List<BalancersBean>? = null){
         data class RulesBean(var type: String = "",
                              var ip: ArrayList<String>? = null,
                              var domain: ArrayList<String>? = null,
@@ -446,13 +445,12 @@ data class V2rayConfig(
                              var inboundTag: List<String>? = null,
                              val protocol: List<String>? = null,
                              val attrs: String? = null,
-                             val domainMatcher: String? = null
-        ),
+                             val domainMatcher: String? = null)
+        
             data class BalancersBean(var tag: String? = null,
                                      var selector: ArrayList<String>? = null,
                                      var strategy: List<StrategyBean>{
-                                             data class StrategyBean(var type: String? = null
-                                                                    )
+                                             data class StrategyBean(var type: String? = null)
                                      }
                                      )
     }
