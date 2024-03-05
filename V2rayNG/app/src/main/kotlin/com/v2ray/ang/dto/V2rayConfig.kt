@@ -430,7 +430,7 @@ data class V2rayConfig(
 
     data class RoutingBean(var domainStrategy: String,
                            var domainMatcher: String? = null,
-                           var rules: ArrayList<RulesBean>
+                           var rules: ArrayList<RulesBean>,
                            val balancers: List<BalancersBean>? = null){
         data class RulesBean(var type: String = "",
                              var ip: ArrayList<String>? = null,
@@ -449,10 +449,9 @@ data class V2rayConfig(
         
             data class BalancersBean(var tag: String? = null,
                                      var selector: ArrayList<String>? = null,
-                                     var strategy: List<StrategyBean>{
+                                     var strategy: List<StrategyBean>){
                                              data class StrategyBean(var type: String? = null)
                                      }
-                                     )
     }
     
     data class ObservatotryBean(var probeInterval: String? = null,
