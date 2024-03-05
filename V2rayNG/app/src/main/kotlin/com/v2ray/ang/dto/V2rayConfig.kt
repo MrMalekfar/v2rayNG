@@ -450,10 +450,10 @@ data class V2rayConfig(
         )
     }
     
-    data class ObservatotryBean(var probeInterval: String? = null
-                                var probeURL: String? = null
+    data class ObservatotryBean(var probeInterval: String? = null,
+                                var probeURL: String? = null,
                                 var subjectSelecto: ArrayList<String>? = null,
-                                var EnableConcurrency: Boolean,
+                                var EnableConcurrency: Boolean
                                 )
         
     data class PolicyBean(var levels: Map<String, LevelBean>,
