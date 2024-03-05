@@ -451,7 +451,7 @@ data class V2rayConfig(
             data class BalancersBean(var tag: String? = null,
                                      var selector: ArrayList<String>? = null,
                                      var strategy: List<StrategyBean>{
-                                             data class StrategyBean(var type: String? = null,
+                                             data class StrategyBean(var type: String? = null
                                                                     )
                                      }
                                      )
