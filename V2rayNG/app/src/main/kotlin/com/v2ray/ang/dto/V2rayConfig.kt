@@ -18,6 +18,7 @@ data class V2rayConfig(
         var outbounds: ArrayList<OutboundBean>,
         var dns: DnsBean,
         val routing: RoutingBean,
+        val observatotry: ObservatotryBean,
         val api: Any? = null,
         val transport: Any? = null,
         val reverse: Any? = null,
@@ -448,7 +449,13 @@ data class V2rayConfig(
                              val domainMatcher: String? = null
         )
     }
-
+    
+    data class ObservatotryBean(var probeInterval: String? = null
+                                var probeURL: String? = null
+                                var subjectSelecto: ArrayList<String>? = null,
+                                var EnableConcurrency: Boolean,
+                                )
+        
     data class PolicyBean(var levels: Map<String, LevelBean>,
                           var system: Any? = null) {
         data class LevelBean(
