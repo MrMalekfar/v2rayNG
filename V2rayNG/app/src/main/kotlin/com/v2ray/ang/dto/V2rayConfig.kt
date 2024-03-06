@@ -431,7 +431,7 @@ data class V2rayConfig(
     data class RoutingBean(var domainStrategy: String,
                            var domainMatcher: String? = null,
                            var rules: ArrayList<RulesBean>,
-                           val balancers: List<BalancersBean>? = null){
+                           val balancers: ArrayList<BalancersBean>? = null){
         data class RulesBean(var type: String = "",
                              var ip: ArrayList<String>? = null,
                              var domain: ArrayList<String>? = null,
